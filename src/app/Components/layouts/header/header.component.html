@@ -1,0 +1,20 @@
+<header *ngIf="ready">
+  <div class="container">
+    <div class="brand">LEES</div>
+    <nav>
+      <button mat-button (click)="navigate('events')" *ngIf="user.type == 1 || user.type == 2">Events</button>
+      <button mat-button (click)="navigate('evaluations')" [class.active]="activePanel == 'evaluations'" *ngIf="user.type == 1 || user.type == 2">Evaluations</button>
+      <button mat-button (click)="navigate('users')" [class.active]="activePanel == 'users'" *ngIf="user.type == 1">Users</button>
+      <button mat-button (click)="navigate('academics')" [class.active]="activePanel == 'academics'" *ngIf="user.type == 1">Academics</button>
+    </nav>
+    <div class="user">
+      <mat-menu #appMenu="matMenu">
+        <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
+
+      <button mat-icon-button [matMenuTriggerFor]="appMenu">
+        <span class="thumb">{{acronym(user.name)}}</span>
+      </button>
+    </div>
+  </div>
+</header>

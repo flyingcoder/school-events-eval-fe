@@ -1,0 +1,29 @@
+.form{
+  overflow: auto;
+  .field{
+    &.col-2{
+    }
+  }
+}
+
+button{
+  &.status{
+    color: #2d39bf !important;
+    width: 100px;
+    background: #f4f4f4;
+    padding: 5px 10px;
+    border: 1px solid #eaeaea;
+    font-size: 12px;
+    border-radius: 2px;
+    margin-right: 4px;
+    cursor: pointer;
+    span{
+      &.disable{
+        color: red;
+      }
+      &.enable{
+        color: green;
+      }
+    }
+  }
+}

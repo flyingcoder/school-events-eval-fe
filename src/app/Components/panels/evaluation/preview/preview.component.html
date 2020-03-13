@@ -1,0 +1,111 @@
+<section class="panel" *ngIf="loggedIn">
+  <div class="container">
+    <div class="panel-wrapper" *ngIf="ready">
+      <div class="main card" style="width: 70%; margin: 0 auto;" *ngIf="validity && enabled">
+        <header class="card-head">
+          <div class="details">
+            <h2>Evaluation Instrument for Co_Curricular/<br>Seminar/ Workshop/ Field Trips</h2>
+            <p>This is an evaluation form for the recent <br><b></b>.</p>
+          </div>
+        </header>
+        <div class="event-details">
+          <div class="col-2">
+            <p><b>Event Name:</b>  {{event?.name}}</p>
+            <p><b>Venue:</b> {{event?.venue}}</p>
+            <p><b>Date:</b> {{dateFormat(event?.date)}}</p>
+          </div>
+          <div class="col-2">
+            <p><b>Semester:</b> {{event?.semester}}</p>
+            <p><b>School Year:</b> {{event?.school_year}}</p>
+          </div>
+        </div>
+        <div class="evaluation">
+          <div class="instructions">
+            <p>Please rate the following criteria from 1 - 5.</p>
+          </div>
+          <div class="item" *ngFor="let criteria of evaluation.criterias; let i = index">
+            <div class="group">
+              <div class="parent">
+                <div class="criteria">
+                  <p><b>{{i + 1}}.</b>{{criteria.value}}</p>
+                </div>
+                <div class="rating" *ngIf="criteria.subcriterias.length == 0">
+                  <mat-radio-group aria-label="Select an option" [(ngModel)]="criteria.answer">
+                    <mat-radio-button value="5">Excellent</mat-radio-button>
+                    <mat-radio-button value="4">Very Good</mat-radio-button>
+                    <mat-radio-button value="3">Good</mat-radio-button>
+                    <mat-radio-button value="2">Fair</mat-radio-button>
+                    <mat-radio-button value="1">Poor</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+              <div class="subcriteria">
+                <div class="sub-item" *ngFor="let subcriteria of criteria.subcriterias">
+                  <div class="criteria">
+                    <p>{{subcriteria.value}}</p>
+                  </div>
+                  <div class="rating">
+                    <mat-radio-group aria-label="Select an option" [(ngModel)]="subcriteria.answer">
+                      <mat-radio-button value="5">Excellent</mat-radio-button>
+                      <mat-radio-button value="4">Very Good</mat-radio-button>
+                      <mat-radio-button value="3">Good</mat-radio-button>
+                      <mat-radio-button value="2">Fair</mat-radio-button>
+                      <mat-radio-button value="1">Poor</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <button mat-button class="main" *ngIf="eventId != null && user.type == 3" (click)="submit()">Submit Evaluation</button>
+        </div>
+      </div>
+    </div>
+    <div class="main card" style="width: 70%; margin: 0 auto;" *ngIf="!validity && ready && enabled">
+      <header class="card-head">
+        <div class="details">
+          <h2>You have submitted an evaluation already!</h2>
+          <p>You can only submit an evaluation to this event once.<br><b></b>.</p>
+        </div>
+      </header>
+    </div>
+  </div>
+  <div class="main card" style="width: 70%; margin: 0 auto;" *ngIf="!enabled && ready">
+    <header class="card-head">
+      <div class="details">
+        <h2>This event is no longer active.</h2>
+        <p>The creator has disabled this evaluation.<br><b></b>.</p>
+      </div>
+    </header>
+  </div>
+</section>
+
+<section class="login" *ngIf="!loggedIn">
+      <div class="card wrapper">
+        <div class="header">
+          <div class="brand">LEES</div>
+          <p>Liceo de Cagayan University <br>Event Evaluation System</p>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="login(form.value)">
+
+          <div class="field full">
+            <mat-form-field appearance="outline">
+              <mat-label>Email Address</mat-label>
+              <input matInput formControlName="email">
+            </mat-form-field>
+          </div>
+          <div class="field full">
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput formControlName="password" type="password">
+            </mat-form-field>
+          </div>
+
+          <button mat-button class="main">Login</button>
+          <div class="footer-links">
+            <p>Don't have an account yet? Click here to <a routerLink="/register">register</a>.</p>
+          </div>
+        </form>
+      </div>
+</section>

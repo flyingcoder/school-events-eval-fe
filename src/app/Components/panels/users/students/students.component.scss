@@ -1,0 +1,6 @@
+tr{
+  span {
+      display: block;
+      &.email {font-size: 11px;color: grey;}
+  }
+}

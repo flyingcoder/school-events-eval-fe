@@ -1,0 +1,108 @@
+<section class="panel">
+  <div class="container">
+    <div class="panel-wrapper">
+      <div class="main card">
+        <header class="card-head">
+          <div class="details">
+            <h2>Registration</h2>
+          </div>
+        </header>
+
+        <div class="content">
+          <div class="form">
+            <form [formGroup]="form" (ngSubmit)="store(form.value)">
+              <div class="user-type" *ngIf="!typeSelected">
+                <div class="options">
+                  <mat-label>Please select a registration type: </mat-label>
+                  <mat-radio-group aria-label="Select an option" formControlName="type">
+                    <mat-radio-button value="2">Staff / Faculty</mat-radio-button>
+                    <mat-radio-button value="3">Student</mat-radio-button>
+                  </mat-radio-group>
+                  <a class="main" href="javascript:void(0);" (click)="selectType()">Proceed to Registration</a>
+                </div>
+              </div>
+              <div *ngIf="typeSelected">
+                <div class="form-header" >
+                  <span>Personal Details</span>
+                  <hr>
+                </div>
+                <div class="field full">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Full Name</mat-label>
+                    <input matInput formControlName="name">
+                  </mat-form-field>
+                </div>
+                <div class="form-group">
+                  <div class="field col-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Email Address</mat-label>
+                      <input matInput formControlName="email">
+                    </mat-form-field>
+                  </div>
+                  <div class="field col-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Phone Number</mat-label>
+                      <input matInput formControlName="phone" type="number">
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="field col-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Password</mat-label>
+                      <input matInput formControlName="password" type="password">
+                    </mat-form-field>
+                  </div>
+                  <div class="field col-2">
+
+                  </div>
+                </div>
+                <div class="form-header">
+                  <span>Academic Details</span>
+                  <hr>
+                </div>
+                <div class="form-group">
+                  <div class="field col-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>School ID</mat-label>
+                      <input matInput formControlName="school_id">
+                    </mat-form-field>
+                  </div>
+                  <div class="field col-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>College</mat-label>
+                      <mat-select formControlName="college" (selectionChange)="getDepartments($event)">
+                        <mat-option *ngFor="let college of colleges" [value]="college.id">{{college.name}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="field col-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Department</mat-label>
+                      <mat-select formControlName="department" (selectionChange)="getCourses($event)">
+                        <mat-option *ngFor="let department of departments" [value]="department.id">{{department.name}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="field col-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Course</mat-label>
+                      <mat-select formControlName="course">
+                        <mat-option *ngFor="let course of courses" [value]="course.id">{{course.name}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <button mat-button class="main">
+                  <span>Register</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

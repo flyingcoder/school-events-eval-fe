@@ -1,0 +1,18 @@
+<app-header></app-header>
+<section class="panel">
+  <div class="container">
+    <div class="panel-wrapper">
+      <div class="sidebar">
+        <span>Academics Management</span>
+        <button mat-menu-item (click)="navigate('colleges')" [class.active]="activePanel == 'colleges'">Colleges</button>
+        <button mat-menu-item (click)="navigate('departments')" [class.active]="activePanel == 'departments'">Departments</button>
+        <button mat-menu-item (click)="navigate('courses')" [class.active]="activePanel == 'courses'">Courses</button>
+      </div>
+      <div class="main card with-sidebar">
+        <app-college *ngIf="activePanel == 'colleges'"></app-college>
+        <app-department *ngIf="activePanel == 'departments'"></app-department>
+        <app-course *ngIf="activePanel == 'courses'"></app-course>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,41 @@
+.form{
+  overflow: auto;
+}
+.criterias{
+  .criteria {
+    float: left;
+    width: 100%;
+    margin: 10px;
+    p{
+      span{
+        &.actions{
+          visibility: hidden;
+          button {
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: #3744c3;
+            font-weight: bold;
+            &.delete{
+              color: red;
+            }
+          }
+        }
+      }
+      &:hover{
+        span{
+          &.actions{
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
+}
+.eval-action{
+  width: 100%;
+  float: left;
+  margin-top: 20px;
+  border-top: 4px solid #e2e2e2;
+  padding: 10px 0 0;
+}

@@ -1,0 +1,28 @@
+<section class="login">
+      <div class="card wrapper">
+        <div class="header">
+          <div class="brand">LEES</div>
+          <p>Liceo de Cagayan University <br>Event Evaluation System</p>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="login(form.value)">
+
+          <div class="field full">
+            <mat-form-field appearance="outline">
+              <mat-label>Email Address</mat-label>
+              <input matInput formControlName="email">
+            </mat-form-field>
+          </div>
+          <div class="field full">
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput formControlName="password" type="password">
+            </mat-form-field>
+          </div>
+
+          <button mat-button class="main">Login</button>
+          <div class="footer-links">
+            <p>Don't have an account yet? Click here to <a routerLink="/register">register</a>.</p>
+          </div>
+        </form>
+      </div>
+</section>

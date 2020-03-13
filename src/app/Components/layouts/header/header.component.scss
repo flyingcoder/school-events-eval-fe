@@ -1,0 +1,40 @@
+header{
+  background: #24292e;
+  overflow: auto;
+  padding: 10px 0px;
+  box-shadow: 0 4px 8px rgba(0,0,0,.2);
+  .brand{
+    font-family: 'Sriracha', cursive;
+    color: #fff;
+    font-size: 30px;
+    float: left;
+    line-height: 30px;
+    margin-right: 10px;
+  }
+  nav{
+    float: left;
+    width: 50%;
+    button{
+      .mat-button-wrapper{
+        color: #fff !important;
+      }
+      &.active{
+        background: #2d39bf;
+      }
+    }
+  }
+  .user{
+    float: right;
+    span.thumb {
+        font-size: 18px;
+        display: flex;
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+        background: black;
+        border-radius: 32px;
+        text-transform: uppercase;
+    }
+  }
+}

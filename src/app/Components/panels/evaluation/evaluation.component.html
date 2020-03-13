@@ -1,0 +1,92 @@
+<app-header></app-header>
+<section class="panel">
+  <div class="container">
+    <div class="panel-wrapper">
+      <div class="main card">
+        <header class="card-head">
+          <div class="details" *ngIf="!enableForm">
+            <h2>Manage Evaluations</h2>
+            <p>List of all evaluation forms.</p>
+          </div>
+          <div class="details" *ngIf="enableForm">
+            <h2>Add Evaluation</h2>
+            <p>Add a new evaluation template.</p>
+          </div>
+          <button mat-button *ngIf="!enableForm" (click)="enableForm = true; criterias = []; update = false">+ Add an evaluation</button>
+          <button mat-button *ngIf="enableForm" (click)="enableForm = false; getAll()">Back to list view</button>
+        </header>
+        <table mat-table [dataSource]="evaluations" class="mat-elevation-z8" *ngIf="!enableForm">
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Title </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="created">
+            <th mat-header-cell *matHeaderCellDef> Created By </th>
+            <td mat-cell *matCellDef="let element"> {{element.user.name}} </td>
+          </ng-container>
+
+          <!-- Action Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element" class="action-link">
+            <a routerLink="/evaluation/{{element.id}}" target="_blank">Preview</a> |
+            <a href="javascript:void(0);" (click)="edit(element)">Edit</a> |
+            <a href="javascript:void(0);" (click)="delete(element)" class="delete">Delete</a>
+          </td>
+        </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <div class="form" *ngIf="enableForm">
+          <form [formGroup]="form" (ngSubmit)="store(form.value)">
+              <div class="field">
+                <p>Enter an evaluation title first to proceed adding a criteria.</p>
+                <mat-form-field appearance="outline">
+                  <mat-label>Evaluation Title</mat-label>
+                  <input matInput formControlName="name">
+                </mat-form-field>
+              </div>
+              <button mat-button class="main">
+                <span *ngIf="!update && evalId == null">+ Add evaluation</span>
+                <span *ngIf="update">+ Update evaluation</span>
+              </button>
+            </form>
+            <div class="criterias" *ngIf="evalId != null">
+              <div class="form-header">
+                <span>Evaluation Criterias</span>
+                <hr>
+                <button mat-button (click)="openCriteriaDialog()">+ Add a criteria</button>
+              </div>
+              <div class="criteria" *ngFor="let criteria of criterias; let i = index">
+                <p><b>{{i + 1}}.</b> {{criteria.value}} <span class="actions"><button (click)="addSubcriteria(criteria.id, i)">+ Add Subcriteria</button>  |  <button class="delete" (click)="deleteCriteria(criteria, i)">Delete</button></span></p>
+                <ul class="subcriterias" *ngFor="let subcriteria of criteria.subcriterias; let x = index">
+                  <li><p>{{subcriteria.value}} <span class="actions"><button class="delete" (click)="deleteSubcriteria(subcriteria, i, x)">Delete</button></span></p></li>
+                </ul>
+              </div>
+            </div>
+            <div class="eval-action" *ngIf="evalId != null && criterias.length > 0 && !update">
+              <button mat-button class="main">
+                <span *ngIf="!update && evalId != null" (click)="enableForm = false; getAll(); criterias = []; evalId = null">Add evaluation</span>
+                <span *ngIf="update">+ Update evaluation</span>
+              </button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

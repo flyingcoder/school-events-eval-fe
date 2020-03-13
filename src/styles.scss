@@ -1,1 +1,274 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Sriracha&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+html, body { height: 100%; background: #f2f2f2;}
+body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+*{
+  outline: none;
+  box-sizing: border-box;
+}
+
+.container{
+  width: 950px;
+  margin: 0 auto;
+  .panel-wrapper {
+      padding: 50px 0;
+  }
+}
+
+.card{
+  padding: 10px 24px 24px;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 6px 14px 0 rgba(0,0,0,.11);
+  .card-head{
+    overflow: auto;
+    .details{
+      float: left;
+      h2{
+        font-size: 15px;
+        margin: 13px 0 5px;
+        color: #2d39bf;
+      }
+      p{
+        font-size: 13px;
+        margin: 0;
+        color: #42526e;
+      }
+    }
+    .mat-button{
+      float: right;
+      margin-top: 13px;
+      .mat-button-wrapper {
+        color: #24292e !important;
+      }
+    }
+
+  }
+}
+
+.mat-button-wrapper{
+  color: #fff !important;
+}
+
+.sidebar{
+  button.mat-menu-item {
+      color: #42526e;
+      font-size: 14px;
+      border-radius: 5px;
+      width: 90% !important;
+      &.active, &:hover {
+        background: #e6e6e6 !important;
+      }
+      &.active{
+        font-weight: bold;
+      }
+  }
+}
+
+table {
+  width: 100%;
+  margin-top: 50px;
+  &.mat-table{
+    background: #fff;
+    box-shadow: none;
+    tr.mat-header-row{
+      height: 40px;
+    }
+    td.mat-cell, th.mat-header-cell{
+      border-color: rgba(36, 41, 46, 0.07);
+    }
+    th.mat-header-cell{
+      border-bottom-width: 3px;
+      border-top-width: 3px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .mat-header-cell, .mat-cell, .mat-footer-cell {
+      color: rgba(0, 0, 0, 0.7);
+    }
+  }
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.mat-form-field-label {
+    color: rgb(178, 178, 178);
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+    color: #2d39bf;
+}
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick{
+   color: #2d39bf;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-wrapper{
+  padding-bottom: 0px;
+}
+
+button.main.mat-button.mat-button-base {
+    float: right;
+    background: #2c39bf;
+}
+
+.form{
+  margin-top: 20px;
+  .form-header {
+    margin-top: 30px;
+    hr {
+        border: none;
+        border-bottom: 3px solid #e2e2e2;
+    }
+    span {
+        font-size: 10px;
+        display: block;
+        font-weight: bold;
+        margin-top: 20px;
+        text-transform: uppercase;
+    }
+  }
+
+  .form-group {
+      overflow: auto;
+  }
+
+  .field{
+    &.full{
+      width: 100%;
+    }
+    &.col-2{
+      width: 50%;
+      float: left;
+      &:first-child{
+        padding-right: 10px;
+      }
+    }
+    .mat-form-field{
+      width: 100%;
+    }
+    .mat-select-value {
+        color: #000;
+    }
+  }
+}
+
+h2#swal2-title {
+    font-size: 14px;
+}
+
+div#swal2-content {
+    font-size: 12px;
+    width: 73%;
+    margin: 0 auto;
+}
+
+.sidebar {
+    float: left;
+    width: 20%;
+    span{
+      font-size: 14px;
+      font-weight: bold;
+      color: #091e42!important;
+      margin-bottom: 10px;
+      display: block;
+    }
+}
+.with-sidebar {
+    float: left;
+    width: 80%;
+}
+
+button.add-btn, .sidebar button.add-btn.mat-menu-item.active, button.add-btn:hover {
+    background: #2c39bf !important;
+    text-align: center;
+    color: white !important;
+    margin-top: 30px;
+}
+
+
+
+a {
+    text-decoration: none;
+    color: #2c39bf;
+    &.cancel {
+        float: right;
+        padding: 12px 20px;
+        font-size: 13px;
+        color: red;
+        display: block;
+    }
+    &.delete{
+      color: red;
+    }
+}
+
+.swal2-content ul li{
+    text-align: left;
+}
+
+.mat-radio-outer-circle {
+    border-color: rgba(208, 208, 208, 0.7);
+    background: #f2f2f2;
+}
+
+.mat-radio-label {
+    margin-right: 17px;
+    font-size: 10px;
+}
+
+.form-header button.mat-button.mat-button-base {
+    float: right;
+    background: #e2e2e2;
+}
+
+.form .form-header button span {
+    color: #24292e !important;
+    margin: 0;
+}
+
+.mat-datepicker-toggle {
+  .mat-button-wrapper {
+      color: #2c39bf !important;
+  }
+}
+
+.mat-expansion-panel {
+    background: #f5f5f5;
+    box-shadow: none !important;
+    color: #2d2d2d !important;
+    .mat-expansion-panel-header-title, .mat-expansion-indicator::after, .mat-expansion-panel-header-description{
+      color: #2d2d2d !important;
+    }
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.sidebar button.add-btn.mat-menu-item:hover {
+    background: rgba(44, 57, 191, 0.88) !important;
+}
+
+.mat-menu-content a{
+  display: block;
+  padding: 5px 10px;
+  color:#fff;
+  font-size: 12px;
+}
+
+tr .mat-button-wrapper {
+  color: #2d39bf !important;
+  width: 100px;
+  background: #f4f4f4;
+  padding: 5px 10px;
+  border: 1px solid #eaeaea;
+  font-size: 12px;
+  border-radius: 2px;
+}

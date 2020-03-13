@@ -1,0 +1,14 @@
+.form{
+  overflow: auto;
+  .user-type{
+    min-height: 30px;
+    a{
+      font-size: 12px;
+      padding: 10px 20px;
+      background: #2c39bf;
+      border-radius: 5px;
+      color: #fff;
+      float: right;
+    }
+  }
+}

@@ -1,0 +1,99 @@
+<app-header></app-header>
+<section class="panel">
+  <div class="container">
+    <div class="panel-wrapper" *ngIf="ready">
+      <div class="main card">
+        <header class="card-head">
+          <div class="details">
+            <h2>{{event.name}}</h2>
+            <p>Reports submitted by students for this events.</p>
+            <p class="total">Total respondents: {{this.respondentsCount}}</p>
+            <p class="total">Response Rate: {{getResponseRate()}}%</p>
+            <button (click)="generateCSV()">Download Report</button>
+          </div>
+        </header>
+        <div class="answers-wrapper">
+          <div class="charts">
+            <div class="table-header">
+              <span class="label">Excellent</span>
+              <span class="label">Very Good</span>
+              <span class="label">Good</span>
+              <span class="label">Fair</span>
+              <span class="label">Poor</span>
+              <span class="label">Mean</span>
+            </div>
+            <div class="entry" *ngFor="let report of reports; let i = index">
+              <div class="criteria">
+                <p>{{i + 1}}. {{report.value}}</p>
+                <span *ngIf="report.subcriterias.length > 0">Total from {{report.subcriterias.length}} subcriterias</span>
+              </div>
+              <div class="results">
+                <span class="value">{{getPercentage(report.total[4])}}</span>
+                <span class="value">{{getPercentage(report.total[3])}}</span>
+                <span class="value">{{getPercentage(report.total[2])}}</span>
+                <span class="value">{{getPercentage(report.total[1])}}</span>
+                <span class="value">{{getPercentage(report.total[0])}}</span>
+                <span class="value">{{getMean(report.total)}}</span>
+                <!-- <div class="chart">
+                  <app-chart [values]="report.total"></app-chart>
+                </div> -->
+              </div>
+            </div>
+            <div class="entry">
+              <div class="criteria">
+                <p><b>MEAN</b></p>
+              </div>
+              <div class="results">
+                <span class="value"></span>
+                <span class="value"></span>
+                <span class="value"></span>
+                <span class="value"></span>
+                <span class="value"></span>
+                <span class="value"><b>{{getTotalMean()}}</b></span>
+                <!-- <div class="chart">
+                  <app-chart [values]="report.total"></app-chart>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="divider">
+            <h3>Answers Overview</h3>
+            <p>List of all submitted answers.</p>
+            <hr>
+          </div>
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let answer of answers">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <b>{{answer.user.name}}</b>
+                </mat-panel-title>
+                <mat-panel-description>
+                  Average Rating: {{answer.average}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="evaluation">
+                <div class="item" *ngFor="let criteria of answer.answers">
+                  <div class="criteria">{{criteria.value}}</div>
+                  <div class="value" *ngIf="criteria.subcriterias.length == 0">
+                    <div class="rating">
+                      <div class="item" *ngFor="let number of [1,2,3,4,5]" [class.highlight]="number <= criteria.answer">{{number}}</div>
+                    </div>
+                  </div>
+                  <div class="subcriteria" *ngFor="let subcriteria of criteria.subcriterias">
+                    <div class="criteria">{{subcriteria.value}}</div>
+                    <div class="value">
+                      <div class="rating">
+                        <div class="item" *ngFor="let number of [1,2,3,4,5]" [class.highlight]="number <= subcriteria.answer">{{number}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-expansion-panel>
+
+          </mat-accordion>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

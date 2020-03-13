@@ -1,0 +1,98 @@
+<header class="card-head">
+  <div class="details">
+    <h2>Register New User</h2>
+    <p>Registration form to add a new user</p>
+  </div>
+</header>
+
+<div class="content">
+  <div class="form">
+    <form [formGroup]="form" (ngSubmit)="store(form.value)">
+      <div class="form-header">
+        <span>User Details</span>
+        <hr>
+      </div>
+      <div class="field full">
+        <mat-form-field appearance="outline">
+          <mat-label>Full Name</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <div class="field col-2">
+          <mat-form-field appearance="outline">
+            <mat-label>Email Address</mat-label>
+            <input matInput formControlName="email">
+          </mat-form-field>
+        </div>
+        <div class="field col-2">
+          <mat-form-field appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input matInput formControlName="phone">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field col-2">
+          <mat-form-field appearance="outline">
+            <mat-label>User Type</mat-label>
+            <mat-select formControlName="type">
+              <mat-option *ngFor="let type of types" [value]="type.id">{{type.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="field col-2">
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-header">
+        <span>Academic Details</span>
+        <hr>
+      </div>
+      <div class="form-group">
+        <div class="field col-2">
+          <mat-form-field appearance="outline">
+            <mat-label>School ID</mat-label>
+            <input matInput formControlName="school_id">
+          </mat-form-field>
+        </div>
+        <div class="field col-2">
+          <mat-form-field appearance="outline">
+            <mat-label>College</mat-label>
+            <mat-select formControlName="college" (selectionChange)="getDepartments($event)">
+              <mat-option *ngFor="let college of colleges" [value]="college.id">{{college.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field col-2">
+          <mat-form-field appearance="outline">
+            <mat-label>Department</mat-label>
+            <mat-select formControlName="department" (selectionChange)="getCourses($event)">
+              <mat-option *ngFor="let department of departments" [value]="department.id">{{department.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="field col-2">
+          <mat-form-field appearance="outline">
+            <mat-label>Course</mat-label>
+            <mat-select formControlName="course">
+              <mat-option *ngFor="let course of courses" [value]="course.id">{{course.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <button mat-button class="main">
+        <span *ngIf="!update">+ Add user</span>
+        <span *ngIf="update">+ Update user</span>
+      </button>
+      <a class="main cancel" href="javascript:void(0);" (click)="cancel()">
+        <span *ngIf="update">Cancel</span>
+      </a>
+    </form>
+  </div>
+</div>

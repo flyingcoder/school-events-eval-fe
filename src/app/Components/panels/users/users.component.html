@@ -1,0 +1,20 @@
+<app-header></app-header>
+<section class="panel">
+  <div class="container">
+    <div class="panel-wrapper">
+      <div class="sidebar">
+        <span>Users Management</span>
+        <button mat-menu-item (click)="navigate('all')" [class.active]="activePanel == 'all'">All Users</button>
+        <button mat-menu-item (click)="navigate('staff')" [class.active]="activePanel == 'staff'">Staff</button>
+        <button mat-menu-item (click)="navigate('students')" [class.active]="activePanel == 'students'">Students</button>
+        <button mat-menu-item (click)="navigate('add-user')" [class.active]="activePanel == 'add-user'" class="add-btn">+ Add new user</button>
+      </div>
+      <div class="main card with-sidebar">
+        <app-list *ngIf="activePanel == 'all' && id == null"></app-list>
+        <app-faculty *ngIf="activePanel == 'staff' && id == null"></app-faculty>
+        <app-students *ngIf="activePanel == 'students' && id == null"></app-students>
+        <app-form *ngIf="activePanel == 'add-user' || id != null" [id]="id"></app-form>
+      </div>
+    </div>
+  </div>
+</section>
