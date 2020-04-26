@@ -3,10 +3,14 @@
     <h2>Manage All Users</h2>
     <p>List of all registered users</p>
   </div>
+  <button mat-button (click)="csvExport()">&darr; Export</button>
+<br>
+ 
 </header>
 
 <div class="content">
   <div class="list">
+
     <mat-form-field appearance="outline">
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">

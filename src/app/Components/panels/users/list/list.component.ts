@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, 
   MatSortModule } from '@angular/material';
 import { MatTableDataSource } from '@angular/material/table';
+import { ExportToCsv } from 'export-to-csv';
 
 export interface users {
   id: number;
@@ -27,6 +28,26 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.getAll();
+  }
+
+  csvExport() {
+
+    const options = { 
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalSeparator: '.',
+      showLabels: true, 
+      showTitle: true,
+      title: 'School Evaluations',
+      useTextFile: false,
+      useBom: true,
+      useKeysAsHeaders: true,
+      // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+    };
+
+    const csvExporter = new ExportToCsv(options);
+     
+    csvExporter.generateCsv(this.users.filteredData);
   }
 
   applyFilter(event: Event) {

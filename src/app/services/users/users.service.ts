@@ -13,6 +13,14 @@ export class UsersService {
     private http: HttpClient
   ) { }
 
+  public import(formData): Observable<any>{
+    return this.http.post(`${this.baseUrl}/users/import`, formData, {  
+      reportProgress: true,  
+      observe: 'events',
+      headers: new HttpHeaders({ Accept: 'application/json', Authorization: 'Bearer ' + this.token })
+    });
+  }
+
   public all(): Observable<any>{
     return this.http.get(`${this.baseUrl}/users/all`, this.httpHeaders);
   }

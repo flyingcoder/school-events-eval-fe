@@ -3,6 +3,7 @@ import { EvaluationsService } from '../../../services/evaluations/evaluations.se
 import { FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { MatTableDataSource } from '@angular/material/table';
+import { ExportToCsv } from 'export-to-csv';
 
 @Component({
   selector: 'app-evaluation',
@@ -29,6 +30,26 @@ export class EvaluationComponent implements OnInit {
   ngOnInit() {
     this.user = localStorage.getItem('user');
     this.getAll();
+  }
+
+  csvExport() {
+
+    const options = { 
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalSeparator: '.',
+      showLabels: true, 
+      showTitle: true,
+      title: 'School Evaluations',
+      useTextFile: false,
+      useBom: true,
+      useKeysAsHeaders: true,
+      // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+    };
+
+    const csvExporter = new ExportToCsv(options);
+     
+    csvExporter.generateCsv(this.evaluations.filteredData);
   }
 
   applyFilter(event: Event) {

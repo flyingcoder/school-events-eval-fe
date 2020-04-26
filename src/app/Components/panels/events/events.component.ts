@@ -78,6 +78,26 @@ export class EventsComponent implements OnInit {
     }
   }
 
+  csvExport() {
+
+    const options = { 
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalSeparator: '.',
+      showLabels: true, 
+      showTitle: true,
+      title: 'School Events',
+      useTextFile: false,
+      useBom: true,
+      useKeysAsHeaders: true,
+      // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+    };
+
+    const csvExporter = new ExportToCsv(options);
+     
+    csvExporter.generateCsv(this.events.filteredData);
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.events.filter = filterValue.trim().toLowerCase();
@@ -90,7 +110,6 @@ export class EventsComponent implements OnInit {
         this.eventSrv.all().subscribe(events => {
           this.events = new MatTableDataSource(events)
           this.ready = true
-          console.log(this.events)
         })
         this.evalSrv.all().subscribe(evaluations => {
           this.evaluations = evaluations

@@ -1,0 +1,4 @@
+name,email,type,department,college,phone,school_id,course,password
+"Rose","rose@gmail.com",2,1,1,"+6392312312321","1","1","myPassWord123"
+"Blue","blue@gmail.com",2,1,1,"+6392312312321","1","1","myPassWord123"
+"Red","red@gmail.com",2,1,1,"+6392312312321","1","1","myPassWord123"

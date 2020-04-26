@@ -13,6 +13,7 @@
             <p>Add a new evaluation template.</p>
           </div>
           <button mat-button *ngIf="!enableForm" (click)="enableForm = true; criterias = []; update = false">+ Add an evaluation</button>
+          <button mat-button *ngIf="!enableForm" (click)="csvExport()">&darr; Export</button>
           <button mat-button *ngIf="enableForm" (click)="enableForm = false; getAll()">Back to list view</button>
         </header>
 

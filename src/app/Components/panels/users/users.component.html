@@ -8,12 +8,14 @@
         <button mat-menu-item (click)="navigate('staff')" [class.active]="activePanel == 'staff'">Faculty</button>
         <button mat-menu-item (click)="navigate('students')" [class.active]="activePanel == 'students'">Students</button>
         <button mat-menu-item (click)="navigate('add-user')" [class.active]="activePanel == 'add-user'" class="add-btn">+ Add new user</button>
+        <button mat-menu-item (click)="navigate('import-user')" [class.active]="activePanel == 'import-user'" class="add-btn">&uarr; Import users</button>
       </div>
       <div class="main card with-sidebar">
         <app-list *ngIf="activePanel == 'all' && id == null"></app-list>
         <app-faculty *ngIf="activePanel == 'staff' && id == null"></app-faculty>
         <app-students *ngIf="activePanel == 'students' && id == null"></app-students>
         <app-form *ngIf="activePanel == 'add-user' || id != null" [id]="id"></app-form>
+        <app-import *ngIf="activePanel == 'import-user' || id != null" [id]="id"></app-import>
       </div>
     </div>
   </div>

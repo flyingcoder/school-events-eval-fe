@@ -13,11 +13,12 @@
             <p>Add a new event.</p>
           </div>
           <button mat-button *ngIf="!enableForm" (click)="enableForm = true">+ Add an event</button>
+          <button mat-button *ngIf="!enableForm" (click)="csvExport()">&darr; Export</button>
           <button mat-button *ngIf="enableForm" (click)="back()">Back to list view</button>
 
         </header>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" *ngIf="!enableForm">
           <mat-label>Filter</mat-label>
           <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
         </mat-form-field>

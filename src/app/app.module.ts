@@ -54,13 +54,13 @@ import { ListComponent } from './Components/panels/users/list/list.component';
 import { FacultyComponent } from './Components/panels/users/faculty/faculty.component';
 import { StudentsComponent } from './Components/panels/users/students/students.component';
 import { FormComponent } from './Components/panels/users/form/form.component';
+import { ImportComponent } from './Components/panels/users/import/import.component';
 import { EvaluationComponent } from './Components/panels/evaluation/evaluation.component';
 import { PreviewComponent } from './Components/panels/evaluation/preview/preview.component';
 import { EventsComponent } from './Components/panels/events/events.component';
 import { ReportsComponent } from './Components/panels/events/reports/reports.component';
 import { LoginComponent } from './Components/login/login.component';
 import { ChartComponent } from './Components/panels/events/reports/chart/chart.component';
-
 
 @NgModule({
   declarations: [
@@ -77,6 +77,7 @@ import { ChartComponent } from './Components/panels/events/reports/chart/chart.c
     FacultyComponent,
     StudentsComponent,
     FormComponent,
+    ImportComponent,
     EvaluationComponent,
     PreviewComponent,
     EventsComponent,
