@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EvaluationsService } from '../../../services/evaluations/evaluations.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-evaluation',
@@ -30,14 +31,19 @@ export class EvaluationComponent implements OnInit {
     this.getAll();
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.evaluations.filter = filterValue.trim().toLowerCase();
+  }
+
   getAll(){
     if(localStorage.getItem('type') == '1'){
       this.evalSrv.all().subscribe(evaluations => {
-        this.evaluations = evaluations
+        this.evaluations = new MatTableDataSource(evaluations)
       });
     } else if(localStorage.getItem('type') == '2'){
       this.evalSrv.allPerUser(this.user).subscribe(evaluations => {
-        this.evaluations = evaluations
+        this.evaluations = new MatTableDataSource(evaluations)
       });
     }
     this.form = this.builder.group(

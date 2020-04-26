@@ -1,4 +1,4 @@
 export const environment = {
-  url: 'http://ldcu-ees.online/les/api',
-  production: true
+  url: 'les.vin/api',
+  production: false
 };

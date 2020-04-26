@@ -61,6 +61,7 @@ import { ReportsComponent } from './Components/panels/events/reports/reports.com
 import { LoginComponent } from './Components/login/login.component';
 import { ChartComponent } from './Components/panels/events/reports/chart/chart.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

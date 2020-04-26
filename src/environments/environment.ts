@@ -3,11 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 const env = {
-  local: 'http://127.0.0.1:8000/api',
+  local: 'http://les.vin/api',
   live: 'http://ldcu-ees.online/les/api'
 }
 export const environment = {
-  url: env.live,
+  url: env.local,
   production: false
 };
 

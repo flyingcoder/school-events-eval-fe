@@ -8,6 +8,12 @@
 
 <div class="content">
   <div class="list">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+    </mat-form-field>
+    
     <table mat-table [dataSource]="users" class="mat-elevation-z8">
 
       <!--- Note that these columns can be defined in any order.

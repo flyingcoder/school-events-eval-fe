@@ -114,7 +114,7 @@ export class PreviewComponent implements OnInit {
   }
 
   dateFormat(date){
-    return moment.utc(new Date(date)).format("MMMM DD, YYYY")
+    return moment(new Date(date)).format("MMMM DD, YYYY")
   }
 
   checkIfLoggedIn(){

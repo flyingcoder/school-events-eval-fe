@@ -9,6 +9,7 @@ import { AnswersService } from '../../../services/answers/answers.service';
 import { AuthService } from '../../../services/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExportToCsv } from 'export-to-csv';
+import { MatTableDataSource } from '@angular/material/table';
 
 import Swal from 'sweetalert2';
 import * as moment from 'moment';
@@ -24,6 +25,7 @@ export interface User {
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss']
 })
+
 export class EventsComponent implements OnInit {
 
   enableForm: boolean = false;
@@ -76,12 +78,17 @@ export class EventsComponent implements OnInit {
     }
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.events.filter = filterValue.trim().toLowerCase();
+  }
+
   getAll(){
     this.authSrv.me().subscribe((user: User) => {
       this.user = user.id
       if(user.type == '1'){
         this.eventSrv.all().subscribe(events => {
-          this.events = events
+          this.events = new MatTableDataSource(events)
           this.ready = true
           console.log(this.events)
         })
@@ -90,7 +97,7 @@ export class EventsComponent implements OnInit {
         });
       } else if(user.type == '2'){
         this.eventSrv.allPerUser(this.user).subscribe(events => {
-          this.events = events
+          this.events = new MatTableDataSource(events)
           this.ready = true
         })
         this.evalSrv.allPerUser(this.user).subscribe(evaluations => {

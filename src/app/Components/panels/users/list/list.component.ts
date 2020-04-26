@@ -1,6 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../../../services/users/users.service';
 import Swal from 'sweetalert2';
+import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, 
+  MatSortModule } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
+
+export interface users {
+  id: number;
+  name: string;
+  contacts: string;
+}
 
 @Component({
   selector: 'app-list',
@@ -20,10 +29,15 @@ export class ListComponent implements OnInit {
     this.getAll();
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.users.filter = filterValue.trim().toLowerCase();
+  }
+
   getAll() {
 
     this.userSrv.all().subscribe(users => {
-      this.users = users
+      this.users = new MatTableDataSource(users)
     });
   }
 

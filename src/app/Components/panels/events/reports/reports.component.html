@@ -6,8 +6,7 @@
         <header class="card-head">
           <div class="details">
             <h2>{{event.name}}</h2>
-            <p>Reports submitted by students for this events.</p>
-            <p class="total">Total respondents: {{this.respondentsCount}}</p>
+            <p class="total">Total respondents: {{this.respondentsCount}} out of {{this.respondents.length}}</p>
             <p class="total">Response Rate: {{getResponseRate()}}%</p>
             <button (click)="generateCSV()">Download Report</button>
           </div>
@@ -41,7 +40,7 @@
             </div>
             <div class="entry">
               <div class="criteria">
-                <p><b>MEAN</b></p>
+                <p><b>Overall Mean</b></p>
               </div>
               <div class="results">
                 <span class="value"></span>
