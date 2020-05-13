@@ -1,4 +1,4 @@
-<section class="panel" *ngIf="loggedIn">
+<section class="panel" *ngIf="!loggedIn">
   <div class="container">
     <div class="panel-wrapper" *ngIf="ready">
       <div class="main card" style="width: 70%; margin: 0 auto;" *ngIf="validity && enabled">
@@ -81,7 +81,7 @@
   </div>
 </section>
 
-<section class="login" *ngIf="!loggedIn">
+<section class="login" *ngIf="loggedIn">
       <div class="card wrapper">
         <div class="header">
           <div class="brand">LEES</div>

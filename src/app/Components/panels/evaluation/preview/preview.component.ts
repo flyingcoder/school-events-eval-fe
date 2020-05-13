@@ -8,10 +8,10 @@ import { AuthService } from '../../../../services/auth/auth.service';
 
 import * as moment from 'moment';
 import Swal from 'sweetalert2';
-
+/*
 interface User {
     type: any
-}
+}*/
 
 @Component({
   selector: 'app-preview',
@@ -47,6 +47,7 @@ export class PreviewComponent implements OnInit {
     this.eventId = this.route.snapshot.paramMap.get('eventId');
     this.evalSrv.show(this.id).subscribe(evaluation => {
       this.evaluation = evaluation
+      console.log(this.evaluation)
       if(this.eventId != null){
         this.eventSrv.show(this.eventId).subscribe(event => {
           this.event = event
@@ -57,7 +58,7 @@ export class PreviewComponent implements OnInit {
         this.ready = true;
       }
     });
-
+    console.log("this")
 
   }
 
